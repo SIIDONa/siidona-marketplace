@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin.html
+
+# Sitemap
+Sitemap: https://siidona-marketplace.com/sitemap.xml

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard - Siidona Marketplace">
+    <title>Admin Dashboard - Siidona Marketplace</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">Siidona Marketplace - Admin</a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="admin.html" class="active">Dashboard</a></li>
+                    <li><a href="index.html">View Site</a></li>
+                    <li><a href="#" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="admin-dashboard">
+            <div class="container">
+                <div class="dashboard-header">
+                    <h1>Admin Dashboard</h1>
+                    <div class="admin-user-info">
+                        <span class="admin-welcome">Welcome, Admin</span>
+                        <span class="admin-date" id="current-date"></span>
+                    </div>
+                </div>
+                
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="products">
+                        <span class="tab-icon">📦</span>
+                        <span>Products</span>
+                    </button>
+                    <button class="tab-btn" data-tab="orders">
+                        <span class="tab-icon">🛒</span>
+                        <span>Orders</span>
+                    </button>
+                    <button class="tab-btn" data-tab="stats">
+                        <span class="tab-icon">📊</span>
+                        <span>Statistics</span>
+                    </button>
+                    <button class="tab-btn" data-tab="settings">
+                        <span class="tab-icon">⚙️</span>
+                        <span>Settings</span>
+                    </button>
+                </div>
+
+                <div class="tab-content active" id="products-tab">
+                    <div class="admin-section-header">
+                        <div>
+                            <h2>Product Management</h2>
+                            <p class="section-description">Manage your product inventory</p>
+                        </div>
+                        <button class="btn btn-primary" id="add-product-btn">
+                            <span>➕</span> Add New Product
+                        </button>
+                    </div>
+
+                    <div class="admin-filters">
+                        <input type="text" id="admin-search" placeholder="Search products..." class="admin-search-input">
+                        <select id="admin-category-filter" class="admin-filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="phones">Phones</option>
+                            <option value="computers">Computers</option>
+                            <option value="cameras">Cameras</option>
+                            <option value="speakers">Speakers</option>
+                            <option value="storage">Storage Devices</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                        <select id="admin-stock-filter" class="admin-filter-select">
+                            <option value="all">All Stock Status</option>
+                            <option value="in-stock">In Stock</option>
+                            <option value="limited">Limited Stock</option>
+                            <option value="out-of-stock">Out of Stock</option>
+                        </select>
+                    </div>
+
+                    <div class="products-table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Featured</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-products-list">
+                                <!-- Products will be loaded by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="orders-tab">
+                    <div class="admin-section-header">
+                        <div>
+                            <h2>Order Management</h2>
+                            <p class="section-description">Track and manage customer orders</p>
+                        </div>
+                        <div class="order-status-filters">
+                            <button class="status-filter-btn active" data-status="all">All</button>
+                            <button class="status-filter-btn" data-status="pending">Pending</button>
+                            <button class="status-filter-btn" data-status="processing">Processing</button>
+                            <button class="status-filter-btn" data-status="shipped">Shipped</button>
+                            <button class="status-filter-btn" data-status="completed">Completed</button>
+                        </div>
+                    </div>
+
+                    <div class="orders-table-wrapper">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-list">
+                                <!-- Sample orders UI -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="stats-tab">
+                    <div class="admin-section-header">
+                        <div>
+                            <h2>Statistics & Analytics</h2>
+                            <p class="section-description">Overview of your marketplace performance</p>
+                        </div>
+                        <select id="stats-period" class="admin-filter-select">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month" selected>This Month</option>
+                            <option value="year">This Year</option>
+                        </select>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card stat-card-primary">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-info">
+                                <h3>Total Products</h3>
+                                <p class="stat-number" id="total-products">0</p>
+                                <span class="stat-change positive">+2 this week</span>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-success">
+                            <div class="stat-icon">🛒</div>
+                            <div class="stat-info">
+                                <h3>Total Orders</h3>
+                                <p class="stat-number" id="total-orders">0</p>
+                                <span class="stat-change positive">+5 this week</span>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-warning">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-info">
+                                <h3>Revenue</h3>
+                                <p class="stat-number" id="total-revenue">0 ETB</p>
+                                <span class="stat-change positive">+12% this month</span>
+                            </div>
+                        </div>
+                        <div class="stat-card stat-card-info">
+                            <div class="stat-icon">⏳</div>
+                            <div class="stat-info">
+                                <h3>Pending Orders</h3>
+                                <p class="stat-number" id="pending-orders">0</p>
+                                <span class="stat-change">Needs attention</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-details">
+                        <div class="stats-chart-section">
+                            <h3>Sales Overview</h3>
+                            <div class="chart-placeholder">
+                                <p>📈 Chart visualization will be displayed here</p>
+                                <p class="chart-note">Connect to backend API to display real-time charts</p>
+                            </div>
+                        </div>
+
+                        <div class="stats-categories">
+                            <h3>Top Categories</h3>
+                            <div class="category-stats">
+                                <div class="category-stat-item">
+                                    <span class="category-name">Phones</span>
+                                    <div class="category-bar">
+                                        <div class="category-bar-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span class="category-value">85%</span>
+                                </div>
+                                <div class="category-stat-item">
+                                    <span class="category-name">Computers</span>
+                                    <div class="category-bar">
+                                        <div class="category-bar-fill" style="width: 70%"></div>
+                                    </div>
+                                    <span class="category-value">70%</span>
+                                </div>
+                                <div class="category-stat-item">
+                                    <span class="category-name">Cameras</span>
+                                    <div class="category-bar">
+                                        <div class="category-bar-fill" style="width: 60%"></div>
+                                    </div>
+                                    <span class="category-value">60%</span>
+                                </div>
+                                <div class="category-stat-item">
+                                    <span class="category-name">Accessories</span>
+                                    <div class="category-bar">
+                                        <div class="category-bar-fill" style="width: 45%"></div>
+                                    </div>
+                                    <span class="category-value">45%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="settings-tab">
+                    <div class="admin-section-header">
+                        <div>
+                            <h2>Settings</h2>
+                            <p class="section-description">Configure your marketplace settings</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>🔔 Notifications</h3>
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" checked>
+                                    <span>Email notifications for new orders</span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox" checked>
+                                    <span>Telegram notifications</span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox">
+                                    <span>Low stock alerts</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>🤖 Telegram Bot</h3>
+                            <div class="setting-item">
+                                <label>Bot Username</label>
+                                <input type="text" value="@sidona_marketbot" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Bot Token</label>
+                                <input type="password" placeholder="Enter bot token" class="setting-input">
+                            </div>
+                            <button class="btn btn-secondary">Test Connection</button>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>💳 Payment Settings</h3>
+                            <div class="setting-item">
+                                <label>Currency</label>
+                                <select class="setting-input">
+                                    <option selected>ETB - Ethiopian Birr</option>
+                                    <option>USD - US Dollar</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-label">
+                                    <input type="checkbox">
+                                    <span>Enable online payments</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3>🌐 Website Settings</h3>
+                            <div class="setting-item">
+                                <label>Site Name</label>
+                                <input type="text" value="Siidona Marketplace" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Contact Email</label>
+                                <input type="email" value="info@siidona.com" class="setting-input">
+                            </div>
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="modal-title">Add New Product</h2>
+                <form id="product-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Product Name *</label>
+                            <input type="text" id="product-name" placeholder="e.g., iPhone 15 Pro" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-category">Category *</label>
+                            <select id="product-category" required>
+                                <option value="">Select Category</option>
+                                <option value="phones">📱 Phones</option>
+                                <option value="computers">💻 Computers</option>
+                                <option value="cameras">📷 Cameras</option>
+                                <option value="speakers">🔊 Speakers</option>
+                                <option value="storage">💾 Storage Devices</option>
+                                <option value="accessories">🎧 Accessories</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-price">Price (ETB) *</label>
+                            <input type="number" id="product-price" placeholder="0" min="0" step="100" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="product-stock">Stock Status *</label>
+                            <select id="product-stock" required>
+                                <option value="in-stock">✅ In Stock</option>
+                                <option value="limited">⚠️ Limited Stock</option>
+                                <option value="out-of-stock">❌ Out of Stock</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-description">Description *</label>
+                        <textarea id="product-description" rows="3" placeholder="Enter product description..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-specs">Specifications (one per line)</label>
+                        <textarea id="product-specs" rows="3" placeholder="e.g.,&#10;6.1&quot; Display&#10;A17 Pro Chip&#10;128GB Storage"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="product-image">Image URL *</label>
+                        <input type="url" id="product-image" placeholder="https://example.com/image.jpg" required>
+                        <small>Enter a valid image URL</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="product-featured">
+                            <span>⭐ Feature this product on homepage</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">💾 Save Product</button>
+                        <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 Siidona Marketplace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products-data.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

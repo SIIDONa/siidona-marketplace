@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse our wide selection of electronics - phones, computers, cameras, and more">
+    <title>Products - Siidona Marketplace</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">Siidona Marketplace</a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="customer-post.html">Post Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="https://t.me/sidona_marketbot" class="telegram-link" target="_blank">Order via Telegram</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="products-page">
+            <div class="container">
+                <h1>Our Products</h1>
+                
+                <div class="products-controls">
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search products..." aria-label="Search products">
+                        <button id="search-btn" aria-label="Search">🔍</button>
+                    </div>
+                    
+                    <div class="filters">
+                        <select id="category-filter" aria-label="Filter by category">
+                            <option value="all">All Categories</option>
+                            <option value="phones">Phones</option>
+                            <option value="computers">Computers</option>
+                            <option value="cameras">Cameras</option>
+                            <option value="speakers">Speakers</option>
+                            <option value="storage">Storage Devices</option>
+                            <option value="accessories">Accessories</option>
+                        </select>
+                        
+                        <select id="sort-filter" aria-label="Sort products">
+                            <option value="default">Sort by</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-grid" id="products-grid">
+                    <!-- Products will be loaded by JavaScript -->
+                </div>
+
+                <div id="no-results" class="no-results" style="display: none;">
+                    <p>No products found matching your criteria.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Siidona Marketplace</h3>
+                    <p>Your trusted electronics marketplace</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="refund.html">Refund & Return Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://t.me/sidona_marketbot" target="_blank">Telegram Bot</a></li>
+                        <li><a href="mailto:info@siidona.com">info@siidona.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Siidona Marketplace. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products-data.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
