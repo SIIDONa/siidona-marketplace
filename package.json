@@ -1,0 +1,22 @@
+{
+  "name": "siidona-marketplace",
+  "version": "1.0.0",
+  "description": "Professional electronics marketplace with Telegram bot integration",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve .",
+    "deploy:vercel": "vercel",
+    "deploy:netlify": "netlify deploy --prod"
+  },
+  "keywords": [
+    "marketplace",
+    "electronics",
+    "telegram",
+    "ecommerce"
+  ],
+  "author": "Siidona Marketplace",
+  "license": "UNLICENSED",
+  "devDependencies": {},
+  "dependencies": {}
+}
